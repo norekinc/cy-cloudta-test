@@ -1,0 +1,14 @@
+{
+  "name": "cypress-from-scratch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run"
+  },
+  "author": "Patryk Matlak",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^12.17.3"
+  }
+}
