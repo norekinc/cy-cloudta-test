@@ -1,20 +1,20 @@
 class NotImplementedError extends Error {
-    constructor(message) {
-        super(message);
-        this.name = "NotImplementedError";
-    }
+  constructor(message) {
+    super(message);
+    this.name = "NotImplementedError";
+  }
 }
 
 class Page {
-    elements = {}
+  elements = {};
 
-    assertIsDisplayed() {
-        throw new NotImplementedError()
-    }
+  assertIsDisplayed() {
+    throw new NotImplementedError();
+  }
 
-    visit() {
-        throw new NotImplementedError()
-    }
+  visit() {
+    throw new NotImplementedError();
+  }
 }
 
-export default Page
+export default Page;

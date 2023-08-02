@@ -1,70 +1,70 @@
-import Page from './page'
+import Page from "./page";
 class HomePage extends Page {
-    elements = {
-        newTodoInputField: () => {
-            return cy.get('.todoapp .new-todo')
-        },
-        todoList: () => {
-          return cy.get('ul.todo-list')
-        },
-        todoListItems: () => {
-          return this.elements.todoList().find('li')
-        },
-        todoListItem: (position) => {
-            return this.elements.todoList().find(`li:nth-child(${position})`)
-        },
-        todoListItemLabel: (position) => {
-            return this.elements.todoListItem(position).find(`label`)
-        },
-        todoListItemToggle: (position) => {
-            return this.elements.todoListItem(position).find('.toggle')
-        }
-    }
+  elements = {
+    newTodoInputField: () => {
+      return cy.get(".todoapp .new-todo");
+    },
+    todoList: () => {
+      return cy.get("ul.todo-list");
+    },
+    todoListItems: () => {
+      return this.elements.todoList().find("li");
+    },
+    todoListItem: (position) => {
+      return this.elements.todoList().find(`li:nth-child(${position})`);
+    },
+    todoListItemLabel: (position) => {
+      return this.elements.todoListItem(position).find(`label`);
+    },
+    todoListItemToggle: (position) => {
+      return this.elements.todoListItem(position).find(".toggle");
+    },
+  };
 
-    // actions
+  // actions
 
-    addItem(text) {
-        this.elements.newTodoInputField()
-            .type(text)
-            .type('{enter}')
-    }
+  addItem(text) {
+    this.elements.newTodoInputField().type(text).type("{enter}");
+  }
 
-    checkItemDone(position) {
-        this.elements.todoListItemToggle(position).click()
-    }
+  checkItemDone(position) {
+    this.elements.todoListItemToggle(position).click();
+  }
 
-    // assertions
+  // assertions
 
-    assertIsDisplayed() {
-        cy.should('be.visible', [
-            this.elements.newTodoInputField(),
-        ])
-        return this
-    }
+  assertIsDisplayed() {
+    cy.should("be.visible", [this.elements.newTodoInputField()]);
+    return this;
+  }
 
-    assertItemAddedToList(position, item) {
-        this.elements.todoListItem(position).should('contain', item)
-        return this
-    }
+  assertItemAddedToList(position, item) {
+    this.elements.todoListItem(position).should("contain", item);
+    return this;
+  }
 
-    assertTotalItemsCount(count) {
-        this.elements.todoListItems().should('have.length', count)
-    }
+  assertTotalItemsCount(count) {
+    this.elements.todoListItems().should("have.length", count);
+  }
 
-    assertItemCheckedDone(position) {
-        this.elements.todoListItem(position)
-            .should('have.class', 'completed')
-        this.elements.todoListItemLabel(position)
-            .should('have.css', 'text-decoration', 'line-through solid rgb(217, 217, 217)')
-    }
+  assertItemCheckedDone(position) {
+    this.elements.todoListItem(position).should("have.class", "completed");
+    this.elements
+      .todoListItemLabel(position)
+      .should(
+        "have.css",
+        "text-decoration",
+        "line-through solid rgb(217, 217, 217)",
+      );
+  }
 
-    // factory
+  // factory
 
-    factorAddItems(items) {
-        items.forEach(item => {
-            this.addItem(item)
-        })
-    }
+  factorAddItems(items) {
+    items.forEach((item) => {
+      this.addItem(item);
+    });
+  }
 }
 
 export default new HomePage();
